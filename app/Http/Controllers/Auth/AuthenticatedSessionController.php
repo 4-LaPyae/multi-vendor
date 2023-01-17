@@ -29,7 +29,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $noti = [
+            "error"=>false,
+            "message"=>"User login successful",
+        ];
+
+        return redirect()->intended(RouteServiceProvider::HOME)->with($noti);
     }
 
     /**
@@ -43,6 +48,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
+    
         return redirect('/');
     }
 }

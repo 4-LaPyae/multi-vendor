@@ -1,1 +1,1 @@
-<img src="{{ asset('logo/jisoo.jpeg') }}" width="100px">
+<img src="{{ asset('backend/assets/images/logo-dark.png') }}" width="100px">
