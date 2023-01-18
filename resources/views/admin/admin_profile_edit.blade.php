@@ -29,7 +29,7 @@
                 <div class="row mb-3">
                     <label for="example-text-input" class="col-sm-2 col-form-label"></label>
                     <div class="col-sm-10">
-                        <img class="rounded avatar-lg" src="{{ (!empty(Auth::user()->profile_image))? asset('storage/'.Auth::user()->profile_image): asset('storage/profile_image.Preworkscreen COVID-19 Screening Default Avatar.png') }}" alt="" class="avatar-md rounded-circle">
+                        <img class="rounded avatar-lg" id="viewimage" src="{{ (!empty(Auth::user()->profile_image))? asset('storage/'.Auth::user()->profile_image): asset('storage/profile_image.Preworkscreen COVID-19 Screening Default Avatar.png') }}" alt="" class="avatar-md rounded-circle">
                     </div>
                 </div>
                 {{-- <div class="row mb-3">

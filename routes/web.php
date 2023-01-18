@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\HomeSlideController;
+use App\Http\Controllers\Home\MultiImgeController;
 use App\Http\Controllers\ProfileController;
+use App\Models\MultiImge;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +36,28 @@ Route::controller(AdminController::class)->group(function (){
     Route::post('update/password','updatePassword')->name('update.password');
 });
 
+//homeslde
+Route::controller((HomeSlideController::class))->group(function(){
+    Route::get('/home/slide', 'HomeSlider')->name('home.slide');
+    Route::post('/update/slide','updateSlide')->name('update.slider');
+});
+//end
+
+//aboutpage
+Route::controller(AboutController::class)->group(function(){
+    Route::get('/about/page', 'aboutPage')->name('about.page');
+    Route::post('/update/about', 'updateAbout')->name('update.about');
+    Route::get('/about', 'homeAbout')->name('home.about');
+
+});
+//end
+
+//multi-image
+Route::controller(MultiImgeController::class)->group(function (){
+    Route::get('about/multi/image','aboutMultiImage')->name('about.multi.image');
+    Route::post('store/multi/image','storeMultiImage')->name('store.multi.image');
+});
+//end
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

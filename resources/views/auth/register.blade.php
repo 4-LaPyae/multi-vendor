@@ -142,7 +142,7 @@
     
                                 <div class="form-group mt-2 mb-0 row">
                                     <div class="col-12 mt-3 text-center">
-                                        <a href="pages-login.html" class="text-muted">Already have account?</a>
+                                        <a href="{{ route('login') }}" class="text-muted">Already have account?</a>
                                     </div>
                                 </div>
                             </form>
