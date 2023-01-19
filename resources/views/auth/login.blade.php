@@ -44,13 +44,13 @@
                                 @csrf
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" type="email" id="email" required="" placeholder="Email" name="email">
+                                        <input class="form-control @error('email') is-invalid @enderror" type="email" value="{{ old('email') }}" id="email"  placeholder="Email" name="email">
                                     </div>
                                 </div>
     
                                 <div class="form-group mb-3 row">
                                     <div class="col-12">
-                                        <input class="form-control" id="password" type="password" required="" placeholder="Password" name="password">
+                                        <input class="form-control @error('password') is-invalid @enderror" id="password" type="password"  placeholder="Password" name="password">
                                     </div>
                                 </div>
     
@@ -98,8 +98,34 @@
         <script src="{{ asset('backend/assets/js/app.js') }}"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
         <script>
+@error('email')
+toastr.error("<?php echo $message ?>")
+@enderror
+@error('password')
+toastr.error("<?php echo $message ?>")
+
+@enderror
+            
             @if(Session::has('message'))
-                toastr.success("{{ Session::get('message') }}")
+
+            var type = "{{ Session::get('alert-type') }}"
+                switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+
+            case 'success':
+            toastr.success(" {{ Session::get('message') }} ");
+            break;
+
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+
+            case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+                break; 
+            }
             @endif
         </script>
 

@@ -16,7 +16,8 @@ class MultiImgeController extends Controller
         $images = $request->file('multi_image');
         if($request->hasFile('multi_image')){
                 foreach($images as $image){
-                    $newimage = "storage/multi_image.".$image->getClientOriginalName();
+                    $newimage = "multi_images/multi_image.".$image->getClientOriginalName();
+                    //hexdec(uniqid()).'.'.$newimage;
                     $image->storeAs('public',$newimage);
                    MultiImge::insert(["multi_image"=>$newimage]);
                 }
@@ -30,10 +31,43 @@ class MultiImgeController extends Controller
         }
         $noti = [
             "error"=>false,
-            "message"=>"Please slect image"
+            "message"=>"Please slect images"
         ];
         return redirect()->back()->with($noti);
 
 
+    }
+
+    //show all images
+    public function AllMultiImage(){
+
+        $allMultiImage = MultiImge::all();
+        return view('admin.about_page.all_multi_image',compact('allMultiImage'));
+
+     }
+
+     //edit multi image
+
+     public function editMultiImage(MultiImge $multiimage){
+        return view('admin.about_page.edit_multi_image',compact('multiimage'));
+        
+     }
+
+     //update mulit image
+
+     public function updateMultiImage(Request $request,MultiImge $multiimage){
+        $image = $request->file('multi_image');
+
+        if($request->hasFile('multi_image')){
+                $newimage = "multi_images/update/multi_image.".$image->getClientOriginalName();
+                $image->storeAs('public',$newimage);
+               MultiImge::insert(["multi_image"=>$newimage]);
+            $noti = [
+                "error"=>false,
+                "message"=>"Multi Image updated Successfully"
+            ];    
+    return redirect()->route('all.multi.image')->with($noti);
+        
+     }
     }
 }

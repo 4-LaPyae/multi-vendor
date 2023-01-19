@@ -11,10 +11,12 @@ use Illuminate\Validation\ValidationException;
 
 class LoginRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+
+    public function authorize()
     {
         return true;
     }
@@ -24,11 +26,20 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+        ];
+    }
+
+    public function messages()
+    {
+        return[
+            'email.required' => 'Email is required',
+            'email.email' => 'Email must be emial',
+            'password.required' => 'Password is required',        
         ];
     }
 

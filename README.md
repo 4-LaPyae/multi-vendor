@@ -53,3 +53,17 @@
         - one image add to database
         - multi-images add to database
 </details>
+<details>
+    <summary>
+    19.1.2023
+    </summary>
+
+## Learning
+
+## Project
+- Backend
+    - aboutpage
+     - multi-imge delete and update
+    - login and register error message with alert box
+    
+</details>

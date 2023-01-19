@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\UpdatePassword;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -77,18 +78,13 @@ class AdminController extends Controller
 
     //update password
 
-    public function updatePassword(Request $request){
-        $request->validate([
-            'oldpassword' => 'required',
-            'newpassword' => 'min:8|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'min:8'
-          ]);
-
-          if(Hash::check($request->oldpassword , auth()->user()->password)) {
-            if(!Hash::check($request->newpassword , auth()->user()->password)) {
+    public function updatePassword(UpdatePassword $request){
+        $validator = $request->validated();
+          if(Hash::check($validator['oldpassword'] , auth()->user()->password)) {
+            if(!Hash::check( $validator['oldpassword'], auth()->user()->password)) {
                $user = User::find(auth()->id());
                $user->update([
-                   'password' => bcrypt($request->newpassword)
+                   'password' => bcrypt($validator['password'])
                ]);
                session()->flash('message','Password updated successfully!');
                return redirect()->route('dashboard');
