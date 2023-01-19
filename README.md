@@ -63,7 +63,7 @@
 ## Project
 - Backend
     - aboutpage
-     - multi-imge delete and update
+     - multi-image delete and update
     - login and register error message with alert box
     
 </details>
