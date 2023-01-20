@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 return new class extends Migration
 {
@@ -14,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('multi_imges', function (Blueprint $table) {
+        Schema::create('portfolios', function (Blueprint $table) {
             $table->id();
-            $table->string('multi_image')->nullable();
+            $table->string('portfolio_name')->nullable();
+            $table->string('portfolio_title')->nullable();
+            $table->string('portfolio_image')->nullable();
+            $table->text('portfolio_description')->nullable();
             $table->timestamps();
         });
-       
     }
 
     /**
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('multi_imges');
+        Schema::dropIfExists('portfolios');
     }
 };

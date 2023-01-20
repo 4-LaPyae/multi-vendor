@@ -49,6 +49,16 @@
                         <li><a href="{{ route('all.multi.image') }}">All Multi Image</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Portfolio Page Setup</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('portfolios.index') }}">All Portfolio</a></li>
+                      <li><a href=" {{ route('add.portfolio') }}">Add Portfolio</a></li>
+                    </ul>
+                </li>
 
                 <li class="menu-title">Pages</li>
 

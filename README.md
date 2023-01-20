@@ -67,3 +67,16 @@
     - login and register error message with alert box
     
 </details>
+<details>
+    <summary>
+    20.1.2023
+    </summary>
+
+## Learning
+- soft delete()
+## Project
+- Backend
+    - aboutpage
+     - multi-image is deleted (soft delete)
+     - start portfolio template        
+</details>

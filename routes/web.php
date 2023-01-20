@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\HomeSlideController;
 use App\Http\Controllers\Home\MultiImgeController;
+use App\Http\Controllers\Home\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use App\Models\MultiImge;
 use Illuminate\Support\Facades\Route;
@@ -59,14 +60,20 @@ Route::controller(MultiImgeController::class)->group(function (){
     Route::get('/all/multi/image', 'AllMultiImage')->name('all.multi.image');
     Route::get('edit/multi/image/{multiimage}','editMultiImage')->name('edit.multi.image');
     Route::post('update/multi/image/{multiimage}','updateMultiImage')->name('update.multi.image');
-
+    Route::get('delete/multi/image/{multiimage}','deleteMultiImage')->name('delete.multi.image');
 
 });
+//end
+
+//portfolio
+Route::resource('portfolios',PortfolioController::class);
+Route::get('add/portfolios',[PortfolioController::class,'addPortfolio'])->name('add.portfolio');
 //end
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 require __DIR__.'/auth.php';
