@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\AboutController;
+use App\Http\Controllers\Home\BlogCategoryController;
+use App\Http\Controllers\Home\BlogController;
 use App\Http\Controllers\Home\HomeSlideController;
 use App\Http\Controllers\Home\MultiImgeController;
 use App\Http\Controllers\Home\PortfolioController;
@@ -67,7 +69,17 @@ Route::controller(MultiImgeController::class)->group(function (){
 
 //portfolio
 Route::resource('portfolios',PortfolioController::class);
-Route::get('add/portfolios',[PortfolioController::class,'addPortfolio'])->name('add.portfolio');
+//end
+
+//blogcategory
+Route::resource('blogcategories',BlogCategoryController::class);
+//end
+
+//blog
+Route::resource('blogs',BlogController::class);
+Route::get('/category/blog/{id}', [BlogController::class,'CategoryBlog'])->name('category.blog');
+Route::get('/blog',[BlogController::class,'HomeBlog'])->name('home.blog');
+
 //end
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

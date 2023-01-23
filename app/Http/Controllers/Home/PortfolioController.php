@@ -21,9 +21,6 @@ class PortfolioController extends Controller
 
     }
 
-    public function addPortfolio(){
-        return view('admin.portfolio.portfolio_add');
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -32,7 +29,7 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.portfolio.portfolio_add');
     }
 
     /**
@@ -43,7 +40,23 @@ class PortfolioController extends Controller
      */
     public function store(StorePortfolioRequest $request)
     {
-        return $request;
+        $validator =  $request->validated();
+                if($request->hasFile('portfolio_image')){
+                 $newimage = "portfolio_images/portfolio_image".hexdec(uniqid()).'.'.$request->file('portfolio_image')->getClientOriginalExtension();
+                    //hexdec(uniqid()).'.'.$newimage;
+                    $request->file('portfolio_image')->storeAs('public',$newimage);
+                    $validator['portfolio_image'] = $newimage;
+                }
+                Portfolio::create($validator);
+                $noti = [
+                    "error"=>false,
+                    "message"=>"Portfolio created Successfully"
+                ];
+                
+        return redirect()->back()->with($noti);
+        
+      
+       
     }
 
     /**
@@ -54,7 +67,7 @@ class PortfolioController extends Controller
      */
     public function show(Portfolio $portfolio)
     {
-        //
+        return view('frontend.portfolio_detail',compact('portfolio'));
     }
 
     /**
@@ -65,7 +78,7 @@ class PortfolioController extends Controller
      */
     public function edit(Portfolio $portfolio)
     {
-        //
+       return view('admin.portfolio.portfolio_edit',compact('portfolio'));
     }
 
     /**
@@ -77,7 +90,24 @@ class PortfolioController extends Controller
      */
     public function update(UpdatePortfolioRequest $request, Portfolio $portfolio)
     {
-        //
+       $validator = $request->validated();
+       if($request->hasFile('portfolio_image')){
+                $newimage = "portfolio_images/portfolio_image".hexdec(uniqid()).'.'.$request->file('portfolio_image')->getClientOriginalExtension();
+                $request->file('portfolio_image')->storeAs('public',$newimage);
+                $validator['portfolio_image'] = $newimage;
+                $portfolio->update($validator);
+                $noti = [
+                    "error"=>false,
+                    "message"=>"Portfolio update with image Successfully"
+                ];              
+        return redirect()->route('portfolios.index')->with($noti);
+       }
+       $portfolio->update($validator);
+       $noti = [
+        "error"=>false,
+        "message"=>"Portfolio update without image Successfully"
+    ];              
+return redirect()->route('portfolios.index')->with($noti);
     }
 
     /**
@@ -88,6 +118,11 @@ class PortfolioController extends Controller
      */
     public function destroy(Portfolio $portfolio)
     {
-        //
+      $portfolio->delete();
+      $noti = [
+        "error"=>false,
+        "message"=>"Portfolio id deleted!"
+        ];              
+    return redirect()->route('portfolios.index')->with($noti);
     }
 }

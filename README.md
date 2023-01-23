@@ -80,3 +80,30 @@
      - multi-image is deleted (soft delete)
      - start portfolio template        
 </details>
+<details>
+    <summary>
+    23.1.2023
+    </summary>
+
+## Learning
+- unlink()
+## Project
+- Backend
+    - Portfolio
+        - show all portfolios (delete and edit)
+        -  add portfolio
+    - Blog category
+     - show all blog category(delete and edit)
+     - add blog category 
+    - Blog page
+        - show all blog page(delete and edit)
+        - add blog
+- frontend 
+    - portfolio
+        - show home page(portfolio)
+        - show details portfolio
+    - show home blog
+    - show blog details
+    - show category blog details
+    - show blog page
+</details>

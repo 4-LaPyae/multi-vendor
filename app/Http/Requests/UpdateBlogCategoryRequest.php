@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdatePortfolioRequest extends FormRequest
+class UpdateBlogCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,11 +23,10 @@ class UpdatePortfolioRequest extends FormRequest
      */
     public function rules()
     {
-        return [   
-                "portfolio_name"=>"required|min:5",
-                "portfolio_title"=>"required",
-                "portfolio_description"=>"required",
-                'portfolio_image' =>  'file|mimes:jpg,jpeg,png,gif|max:1024',
+        return [
+            "blog_category"=> "required|min:5|unique:blog_categories"
+
         ];
+
     }
 }

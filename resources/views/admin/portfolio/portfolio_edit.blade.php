@@ -10,16 +10,17 @@
     <div class="card">
         <div class="card-body">
 
-            <h4 class="card-title">Protfolio Page </h4>
+            <h4 class="card-title">Protfolio Edit Page </h4>
 
-            <form method="post" action="{{ route('portfolios.store') }}" enctype="multipart/form-data">
+            <form method="post" action="{{ route('portfolios.update',$portfolio->id) }}" enctype="multipart/form-data">
                 @csrf
+                @method('put')
             <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Protfolio Name</label>
                 <div class="col-sm-10">
-                    <input name="portfolio_name" class="form-control @error('portfolio_name') is-invalid @enderror" value="{{ old('portfolio_name') }}" type="text" id="example-text-input">
+                    <input name="portfolio_name" class="form-control" type="text" value="{{ $portfolio->portfolio_name }}" id="example-text-input">
                     @error('portfolio_name')
-                        <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger"> {{ $message }} </span>
                     @enderror
                 </div>
             </div>
@@ -28,33 +29,32 @@
               <div class="row mb-3">
                 <label for="example-text-input" class="col-sm-2 col-form-label">Protfolio Title </label>
                 <div class="col-sm-10">
-                    <input name="portfolio_title" class="form-control  @error('portfolio_title') is-invalid @enderror" value="{{ old('portfolio_title') }}" type="text" id="example-text-input">
+                    <input name="portfolio_title" class="form-control" type="text" value="{{ $portfolio->portfolio_title }}" id="example-text-input">
+
                     @error('portfolio_title')
-                    <span class="text-danger">{{ $message }}</span>
-                @enderror
-                </div>
-            </div>
-            <!-- end row -->
-            <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label">Protfolio Description </label>
-                <div class="col-sm-10">
-      <textarea id="elm1" name="portfolio_description" class="form-control  @error('portfolio_description') is-invalid @enderror" value="{{ old('portfolio_description') }}">
-      </textarea>
-      @error('portfolio_title')
-                        <span class="text-danger">{{ $message }}</span>
+                    <span class="text-danger"> {{ $message }} </span>
                     @enderror
                 </div>
             </div>
             <!-- end row -->
 
-             <div class="row mb-3">
-                <label for="example-text-input" class="col-sm-2 col-form-label ">Protfolio Image </label>
+
+
+            <div class="row mb-3">
+                <label for="example-text-input" class="col-sm-2 col-form-label">Protfolio Description </label>
                 <div class="col-sm-10">
-           <input name="portfolio_image" class="form-control  @error('portfolio_image') is-invalid @enderror" type="file" id="image">
-           @error('portfolio_image')
-           <span class="text-danger">{{ $message }}</span>
-       @enderror    
-        </div>
+      <textarea id="elm1" name="portfolio_description" class="form-control">
+      {{ $portfolio->portfolio_description }}
+      </textarea>
+                </div>
+            </div>
+            <!-- end row -->
+
+             <div class="row mb-3">
+                <label for="example-text-input" class="col-sm-2 col-form-label">Protfolio Image </label>
+                <div class="col-sm-10">
+           <input name="portfolio_image" class="form-control" type="file" id="image">
+                </div>
             </div>
             <!-- end row -->
 
@@ -62,11 +62,11 @@
               <div class="row mb-3">
                  <label for="example-text-input" class="col-sm-2 col-form-label">  </label>
                 <div class="col-sm-10">
-  <img id="showImage" class="rounded avatar-lg" src="{{ url('storage/nophoto.webp') }}" alt="Card image cap">
+  <img id="showImage" class="rounded avatar-lg" src="{{ asset('storage/'.$portfolio->portfolio_image) }}" alt="Card image cap">
                 </div>
             </div>
             <!-- end row -->
-<input type="submit" class="btn btn-info waves-effect waves-light" value="Insert Protfolio Data">
+<input type="submit" class="btn btn-info waves-effect waves-light" value="Update Protfolio Data">
             </form>
 
 
@@ -80,8 +80,6 @@
 
 </div>
 </div>
-
-
 <script type="text/javascript">
     
     $(document).ready(function(){
