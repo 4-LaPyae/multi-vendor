@@ -107,3 +107,16 @@
     - show category blog details
     - show blog page
 </details>
+<details>
+    <summary>
+    24.1.2023
+    </summary>
+
+## Learning
+
+## Project
+- Backend
+    - footer and contact with(database)
+- frontend 
+   - show footer and contact
+</details>
