@@ -2,7 +2,6 @@
 @section('main')
 
 <main>
-
             <!-- breadcrumb-area -->
             <section class="breadcrumb__wrap">
                 <div class="container custom-container">
@@ -44,7 +43,7 @@
 <div class="standard__blog__post">
     <div class="standard__blog__thumb">
         <a href="blog-details.html"><img src="{{ asset('storage/'.$item->blog_image) }}" alt=""></a>
-        <a href="blog-details.html" class="blog__link"><i class="far fa-long-arrow-right"></i></a>
+        <a href="{{ route('blogs.show',$item->id) }}" class="blog__link"><i class="far fa-long-arrow-right"></i></a>
     </div>
     <div class="standard__blog__content">
         <div class="blog__post__avatar">

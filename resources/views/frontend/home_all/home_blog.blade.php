@@ -11,9 +11,9 @@
     <div class="col-lg-4 col-md-6 col-sm-9">
         <div class="blog__post__item">
             <div class="blog__post__thumb">
-                <a href="blog-details.html"><img src="{{ asset('storage/'.$item->blog_image) }} " alt=""></a>
+                <a href="blog-details.html"><img src="{{ asset('storage/'.$item->blog_image) }} " alt="" width="400px" height="500px"></a>
                 <div class="blog__post__tags">
-      <a href="blog.html">{{ $item->category['blog_category'] }}</a>
+            <a href="blog.html">{{ $item->category['blog_category'] }}</a>
                 </div>
             </div>
             <div class="blog__post__content">
@@ -26,7 +26,7 @@
     @endforeach
                     </div>
                     <div class="blog__button text-center">
-                        <a href="blog.html" class="btn">more blog</a>
+                        <a href="" class="btn">more blog</a>
                     </div>
                 </div>
             </section>

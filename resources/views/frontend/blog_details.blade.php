@@ -1,9 +1,7 @@
 @extends('frontend.main_master')
 @section('main')
 
-
   <main>
-
             <!-- breadcrumb-area -->
             <section class="breadcrumb__wrap">
                 <div class="container custom-container">
@@ -206,15 +204,6 @@
                 <button type="submit"><i class="fal fa-search"></i></button>
             </form>
         </div>
-
-
-
-
-
-
-
-
-
         <div class="widget">
             <h4 class="widget-title">Recent Blog</h4>
             <ul class="rc__post">

@@ -30,7 +30,7 @@ class StorePortfolioRequest extends FormRequest
             "portfolio_name"=>"required|min:5",
             "portfolio_title"=>"required",
             "portfolio_description"=>"required",
-            'portfolio_image' =>  'file|mimes:jpg,jpeg,png,gif|max:1024',
+            'portfolio_image' =>'file|mimes:jpg,jpeg,png,gif|max:1024',
         ];
     }
 

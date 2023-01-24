@@ -64,7 +64,7 @@ return redirect()->route('blogs.index')->with($noti);
      */
     public function show(Blog $blog)
     {
-        $allblogs = Blog::latest()->limit(5)->get();
+        $allblogs = Blog::latest()->limit(3)->get();
         $categories = BlogCategory::orderBy('blog_category','asc')->get();
         return view('frontend.blog_details',compact('blog','allblogs','categories'));
     }
@@ -127,16 +127,15 @@ return redirect()->route('blogs.index')->with($noti);
     }
 
     public function CategoryBlog($id){
-
-        $blogpost = Blog::where('blog_category_id',$id)->orderBy('id','DESC')->get();
+        $blogpost = Blog::where('blog_category_id',$id)->orderBy('id','desc')->get();
         $allblogs = Blog::latest()->limit(5)->get();
-        $categories = BlogCategory::orderBy('blog_category','ASC')->get();
+        $categories = BlogCategory::orderBy('blog_category','asc')->get();
         $categoryname = BlogCategory::findOrFail($id);
         return view('frontend.cat_blog_details',compact('blogpost','allblogs','categories','categoryname'));
      }
 
      public function HomeBlog(){
-        $categories = BlogCategory::orderBy('blog_category','ASC')->get();
+        $categories = BlogCategory::orderBy('blog_category','asc')->get();
         $allblogs = Blog::latest()->get();
         return view('frontend.blog',compact('allblogs','categories'));
 

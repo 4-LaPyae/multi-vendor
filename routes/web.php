@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
+use App\Http\Controllers\Home\ContactController;
+use App\Http\Controllers\Home\FooterController;
 use App\Http\Controllers\Home\HomeSlideController;
 use App\Http\Controllers\Home\MultiImgeController;
 use App\Http\Controllers\Home\PortfolioController;
@@ -79,7 +81,14 @@ Route::resource('blogcategories',BlogCategoryController::class);
 Route::resource('blogs',BlogController::class);
 Route::get('/category/blog/{id}', [BlogController::class,'CategoryBlog'])->name('category.blog');
 Route::get('/blog',[BlogController::class,'HomeBlog'])->name('home.blog');
+//end
 
+//footer
+Route::resource('footers',FooterController::class);
+//end
+
+//contact
+Route::resource('contact',ContactController::class);
 //end
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -19,9 +19,10 @@
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/default.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/style.css') }}">
         <link rel="stylesheet" href="{{ asset('frontend/assets/css/responsive.css') }}">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+
     </head>
     <body>
-
         <!-- preloader-start -->
         <div id="preloader">
             <div class="rasalina-spin-box"></div>
@@ -45,16 +46,9 @@
 
    </main>
         <!-- main-area-end -->
-
-
-
         <!-- Footer-area -->
         @include('frontend.body.footer')
         <!-- Footer-area-end -->
-
-
-
-
 		<!-- JS here -->
         <script src="{{ asset('frontend/assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
         <script src="{{ asset('frontend/assets/js/bootstrap.min.js') }}"></script>
@@ -67,5 +61,11 @@
         <script src="{{ asset('frontend/assets/js/wow.min.js') }}"></script>
         <script src="{{ asset('frontend/assets/js/plugins.js') }}"></script>
         <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+        <script>
+           @if(Session::has('message'))
+                toastr.success("{{ Session::get('message') }}")
+            @endif
+           </script>
     </body>
 </html>
