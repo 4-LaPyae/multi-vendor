@@ -1,3 +1,6 @@
+@php
+$routename = Route::currentRouteName();
+@endphp
 <header>
     <div id="sticky-header" class="menu__area transparent-header">
         <div class="container custom-container">
@@ -7,27 +10,23 @@
 <div class="menu__wrap">
 <nav class="menu__nav">
 <div class="logo">
-<a href="index.html" class="logo__black"><img src="{{ asset('frontend/assets/img/logo/logo_black.png') }}" alt=""></a>
-<a href="index.html" class="logo__white"><img src="{{ asset('frontend/assets/img/logo/logo_white.png') }}" alt=""></a>
+<a href="{{ route('home.main')  }}" class="logo__black"><img src="{{ asset('frontend/assets/img/logo/logo_black.png') }}" alt=""></a>
+<a href="{{ route('home.main') }}" class="logo__white"><img src="{{ asset('frontend/assets/img/logo/logo_white.png') }}" alt=""></a>
 </div>
 <div class="navbar__wrap main__menu d-none d-xl-flex">
 <ul class="navigation">
-    <li class="active"><a href="{{ url('/') }}">Home</a></li>
-    <li><a href="{{ route('home.about') }}">About</a></li>
-<li><a href="services-details.html">Services</a></li>
-<li class="menu-item-has-children"><a href="#">Portfolio</a>
-<ul class="sub-menu">
-    <li><a href="portfolio.html">Portfolio</a></li>
-    <li><a href="portfolio-details.html">Portfolio Details</a></li>
-</ul>
+    <li class="{{ ($routename == 'home.main') ? 'active' : '' }}"><a href="{{ route('home.main') }}">Home</a></li>
+    <li class="{{ ($routename == 'home.about') ? 'active' : '' }}"><a href="{{ route('home.about') }}">About</a></li>
+<li class=""><a href="services-details.html">Services</a></li>
+<li class="menu-item-has-children {{ ($routename == 'header.portfolio') ? 'active' : '' }}"><a href="{{ route('header.portfolio') }}">Portfolio</a>
 </li>
-<li class="menu-item-has-children"><a href="{{ route('home.blog') }}">Our Blog</a>
+<li class="menu-item-has-children {{ ($routename == 'home.blog') ? 'active' : '' }}"><a href="{{ route('home.blog') }}">Our Blog</a>
 </li>
-<li><a href="{{ route('contact.index') }}">contact me</a></li>
+<li class="{{ ($routename == 'contact.index') ? 'active' : '' }}"><a href="{{ route('contact.index') }}">contact me</a></li>
 </ul>
 </div>
 <div class="header__btn d-none d-md-block">
-<a href="contact.html" class="btn">Contact me</a>
+<a href="{{ route('contact.index') }}" class="btn">Contact me</a>
 </div>
 </nav>
 </div>

@@ -136,7 +136,7 @@ return redirect()->route('blogs.index')->with($noti);
 
      public function HomeBlog(){
         $categories = BlogCategory::orderBy('blog_category','asc')->get();
-        $allblogs = Blog::latest()->get();
+        $allblogs = Blog::paginate(3);
         return view('frontend.blog',compact('allblogs','categories'));
 
      }

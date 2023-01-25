@@ -33,12 +33,11 @@
 
                         </thead>
                         <tbody>
-                        	@php($i = 1)
-                        	@foreach($blogcategory as $item)
+                        	
+                        	@foreach($blogcategory as $key => $item)
                         <tr>
-                            <td> {{ $i++}} </td>
+                            <td> {{ $key+1}} </td>
                             <td> {{ $item->blog_category }} </td> 
-
                             <td>
         <div class="d-flex justify-content-around w-50" >
             <a href="{{ route('blogcategories.edit',$item->id) }}" class="btn btn-info sm" title="Edit Data">  <i class="fas fa-edit"></i> </a>

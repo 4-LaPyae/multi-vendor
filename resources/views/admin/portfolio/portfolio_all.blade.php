@@ -48,8 +48,8 @@
                             <td>
                             <div class="d-flex justify-content-around w-75" >
                                     <a href="{{ route('portfolios.edit',$item->id) }}" class="btn btn-info sm" title="Edit Data" id="edit">  <i class="fas fa-edit"></i> </a>
-                                   
-                                    <form action="{{ route('portfolios.destroy', $item->id) }}" method="post" >
+
+                                    <form action="{{ route('portfolios.destroy', $item->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger sm" onclick="return confirm('Are you sure!')">

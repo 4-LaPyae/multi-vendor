@@ -18,6 +18,7 @@ $(function(){
                         'Your file has been deleted.',
                         'success'
                       )
+                     
                     }
                   }) 
 

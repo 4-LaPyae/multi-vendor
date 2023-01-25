@@ -125,4 +125,10 @@ return redirect()->route('portfolios.index')->with($noti);
         ];              
     return redirect()->route('portfolios.index')->with($noti);
     }
+
+
+    public function homePortfolio(){
+        $portfolio = Portfolio::latest()->get();
+        return view('frontend.portfolio',compact('portfolio'));
+    }
 }

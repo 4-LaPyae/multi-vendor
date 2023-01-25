@@ -120,3 +120,16 @@
 - frontend 
    - show footer and contact
 </details>
+<details>
+    <summary>
+    25.1.2023
+    </summary>
+
+## Learning
+
+## Project
+- Backend
+    - admin panel is middleware('auth)
+#### Basic project is finished 
+   
+</details>

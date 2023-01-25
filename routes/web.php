@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\Home\AboutController;
 use App\Http\Controllers\Home\BlogCategoryController;
 use App\Http\Controllers\Home\BlogController;
@@ -32,14 +33,17 @@ Route::get('/dashboard', function () {
     return view('admin.index');
 })->middleware(['auth'])->name('dashboard');
 
-Route::controller(AdminController::class)->group(function (){
-    Route::get('/admin/logout','destroy')->name('admin.logout');
-    Route::get('/admin/profile','profile')->name('admin.profile');
-    Route::get('edit/profile','editProfile')->name('edit.profile');
-    Route::post('store/profile','storeProfile')->name('store.profile');
-    Route::get('change/password','changePassword')->name('change.password');
-    Route::post('update/password','updatePassword')->name('update.password');
+Route::middleware('auth')->group(function (){
+    Route::controller(AdminController::class)->group(function (){
+        Route::get('/admin/logout','destroy')->name('admin.logout');
+        Route::get('/admin/profile','profile')->name('admin.profile');
+        Route::get('edit/profile','editProfile')->name('edit.profile');
+        Route::post('store/profile','storeProfile')->name('store.profile');
+        Route::get('change/password','changePassword')->name('change.password');
+        Route::post('update/password','updatePassword')->name('update.password');
+    });
 });
+
 
 //homeslde
 Route::controller((HomeSlideController::class))->group(function(){
@@ -71,6 +75,7 @@ Route::controller(MultiImgeController::class)->group(function (){
 
 //portfolio
 Route::resource('portfolios',PortfolioController::class);
+Route::get('home/portfolio',[PortfolioController::class,'homePortfolio'])->name('header.portfolio');
 //end
 
 //blogcategory
@@ -89,6 +94,10 @@ Route::resource('footers',FooterController::class);
 
 //contact
 Route::resource('contact',ContactController::class);
+//end
+
+//demo
+Route::get('home',[DemoController::class,'homeMain'])->name('home.main');
 //end
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
